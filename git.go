@@ -13,6 +13,11 @@ func PushTag(tag string) {
 	hacmd.Execute("git", "push", "origin", tag)
 }
 
+func DeleteTag(tag string) {
+	hacmd.Execute("git", "tag", "-d", tag)
+	hacmd.Execute("git", "push", "--delete", "origin", tag)
+}
+
 func SetRemoteUrl(url string) {
 	hacmd.Execute("git", "remote", "set-url", "origin", url)
 }
