@@ -9,10 +9,8 @@ type Giter struct {
 
 func NewGiter() *Giter {
 	g := new(Giter)
-	of, err := os.Getwd()
-	if err != nil {
-		g.OriginPath = of
-	}
+	of, _ := os.Getwd()
+	g.OriginPath = of
 	return g
 }
 
