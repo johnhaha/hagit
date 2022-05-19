@@ -42,3 +42,7 @@ func Commit(content string) {
 func CreateNewRepo(name string) {
 	hacmd.Execute("gh", "repo", "create", name, "--private")
 }
+
+func SetRepoSecretFromFile(path string) {
+	hacmd.Execute("gh", "secret", "set", "-f", path)
+}
