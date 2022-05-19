@@ -1,5 +1,5 @@
 module github.com/johnhaha/hagit
 
-go 1.17
+go 1.18
 
-require github.com/johnhaha/hakit v0.0.19
+require github.com/johnhaha/hakit v0.2.36

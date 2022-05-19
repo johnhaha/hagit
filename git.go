@@ -1,10 +1,17 @@
 package hagit
 
-import "github.com/johnhaha/hakit/hacmd"
+import (
+	"time"
 
-func Push(commit string) {
+	"github.com/johnhaha/hakit/hacmd"
+)
+
+func Push(commit string, slow bool) {
 	hacmd.Execute("git", "add", ".")
 	hacmd.Execute("git", "commit", "-m", commit)
+	if slow {
+		time.Sleep(time.Second)
+	}
 	hacmd.Execute("git", "push")
 }
 
@@ -20,4 +27,18 @@ func DeleteTag(tag string) {
 
 func SetRemoteUrl(url string) {
 	hacmd.Execute("git", "remote", "set-url", "origin", url)
+}
+
+func NewBranch(name string) {
+	hacmd.Execute("git", "branch", name)
+	hacmd.Execute("git", "checkout", name)
+}
+
+func Commit(content string) {
+	hacmd.Execute("git", "add", ".")
+	hacmd.Execute("git", "commit", "-m", content)
+}
+
+func CreateNewRepo(name string) {
+	hacmd.Execute("gh", "repo", "create", name, "--private")
 }

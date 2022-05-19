@@ -5,6 +5,7 @@ import "os"
 type Giter struct {
 	Path       string
 	OriginPath string
+	Slow       bool
 }
 
 func NewGiter() *Giter {
@@ -16,6 +17,11 @@ func NewGiter() *Giter {
 
 func (g *Giter) SetPath(p string) *Giter {
 	g.Path = p
+	return g
+}
+
+func (g *Giter) SetSlow() *Giter {
+	g.Slow = true
 	return g
 }
 
@@ -32,7 +38,7 @@ func (g *Giter) Push(cmt string) *Giter {
 	if g.Path != "" {
 		os.Chdir(g.Path)
 	}
-	Push(cmt)
+	Push(cmt, g.Slow)
 	g.Back()
 	return g
 }
