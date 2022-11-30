@@ -1,6 +1,7 @@
 package hagit
 
 import (
+	"strings"
 	"time"
 
 	"github.com/johnhaha/hakit/hacmd"
@@ -12,7 +13,7 @@ func Push(commit string, slow bool) {
 	if slow {
 		time.Sleep(time.Second)
 	}
-	hacmd.Execute("git", "push")
+	hacmd.Execute("git", "push", "-u", "origin", "main")
 }
 
 func PushTag(tag string) {
@@ -45,4 +46,17 @@ func CreateNewRepo(name string) {
 
 func SetRepoSecretFromFile(path string) {
 	hacmd.Execute("gh", "secret", "set", "-f", path)
+}
+
+func CheckStatusContains(msg ...string) bool {
+	res, err := hacmd.Run("git", "status")
+	if err != nil {
+		panic(err)
+	}
+	for _, m := range msg {
+		if strings.Contains(res, m) {
+			return true
+		}
+	}
+	return false
 }
