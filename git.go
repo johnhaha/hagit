@@ -1,6 +1,7 @@
 package hagit
 
 import (
+	"os"
 	"strings"
 	"time"
 
@@ -14,6 +15,15 @@ func Push(commit string, slow bool) {
 		time.Sleep(time.Second)
 	}
 	hacmd.Execute("git", "push", "-u", "origin", "main")
+}
+
+func Clone(gitPath string, dest string) {
+	hacmd.Execute("git", "clone", gitPath, dest)
+}
+
+func Pull(dest string) {
+	os.Chdir(dest)
+	hacmd.Execute("git", "pull")
 }
 
 func PushTag(tag string) {
