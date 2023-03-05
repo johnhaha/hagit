@@ -3,5 +3,5 @@
 ## Install
 
 ```bash
-go get github.com/johnhaha/hagit@v0.0.12
+go get github.com/johnhaha/hagit@v0.0.13
 ```

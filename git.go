@@ -21,9 +21,10 @@ func Clone(gitPath string, dest string) {
 	hacmd.Execute("git", "clone", gitPath, dest)
 }
 
-func Pull(dest string) {
+func Pull(dest string) string {
 	os.Chdir(dest)
-	hacmd.Execute("git", "pull")
+	ot := hacmd.Execute("git", "pull")
+	return ot
 }
 
 func PushTag(tag string) {
